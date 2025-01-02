@@ -54,7 +54,7 @@ struct SuperHeroBuscador: View {
                     ZStack{
                         SuperHeroItem(superhero: superhero)
                         
-                        NavigationLink(destination: {}){ // ¿porque no meto dentro el  'SuperHeroItem(superhero: superhero)'? Debido a que sino me salidra la flecha de navegación y no quiero que salga
+                        NavigationLink(destination: SuperHeroDetails(id: superhero.id)){ // ¿porque no meto dentro el  'SuperHeroItem(superhero: superhero)'? Debido a que sino me salidra la flecha de navegación y no quiero que salga
                             EmptyView()
                         }.opacity(0) //lo hace completamente transparete para que no se veala flecha, pero aun asi es clickable
                         
