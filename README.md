@@ -1,5 +1,5 @@
 ## Aprende a PROGRAMAR aplicaciones iOS en SWIFT desde CERO con SWIFTUI.
-## TEMARIO
+
 ### 1.	Introducción ✅
 ### 2.	xCode ✅
 IDE oficial para Swift.
