@@ -24,13 +24,12 @@ struct MapsEjemplo: View {
                 Map(position: $position) {
                     Marker("Restaurante Mauricio", coordinate: CLLocationCoordinate2D(latitude: 40.051752, longitude:  -5.776943)) // crear punto con localización
                     
-                    
                     Annotation("Mi casa", coordinate: CLLocationCoordinate2D(latitude: 39.89, longitude: -5.53)){
                         Circle().frame(width: 15, height: 15).foregroundColor(Color.orange)
                     }  // crear punto con localización personalizado
                     
                     
-                } .mapStyle(.hybrid(elevation: .realistic, showsTraffic: true)) //Tipos de mapas: standar, hybrid, imagery - showsTraffic: true --> el estado de las carreteras, etc
+                }.mapStyle(.hybrid(elevation: .realistic, showsTraffic: true)) //Tipos de mapas: standar, hybrid, imagery - showsTraffic: true --> el estado de las carreteras, etc
                 /** .onMapCameraChange{ newPosition in // cada vez que se pare en una posicion en el mapa
                  print("Estamos en \(newPosition.region)")
                  } */
