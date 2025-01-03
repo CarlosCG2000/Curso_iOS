@@ -6,7 +6,7 @@ IDE oficial para Swift.
 Creación de folio en blanco sin crear aun un proyecto solo un ‘Playground’ en blanco (un fichero para hacer pruebas y ver resultados).
 Comando + d : duplicar la línea
 
-## ============ Swift ============
+## Swift
 
 ### 4.	Variables ✅
 o	Operaciones
@@ -23,7 +23,7 @@ o	Ejercicios #1
 ### 13.	Nulabilidad ✅
 ### 14.	Clases y Structs ✅
     
-## ============ SwiftUI ============
+## SwiftUI
 
 ### 16.	Introducción a xCode ✅
 Ahora si se crea un proyecto
