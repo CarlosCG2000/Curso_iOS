@@ -56,13 +56,13 @@ struct SuperHeroDetails: View {
                             }
                         }
                         
+                        Spacer()
+                        
                         SuperHeroStats(stats: superHeroe.powerstats)
                         
                     }.padding(.bottom, 30)
                     
                 }
-                
-                
             }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -77,7 +77,8 @@ struct SuperHeroDetails: View {
                     }
                     loading = false
                 }
-            }
+            }.navigationTitle(" #\(id) - Detalles de Superheroe")
+            .foregroundStyle(Color.white)
     }
 }
 
@@ -87,64 +88,90 @@ struct SuperHeroStats:View {
     
     var body: some View {
         
-        let dicEstatistica: [String: Color] = [
-            stats.combat: .green,
-            stats.durability: .blue,
-            stats.intelligence: .orange,
-            stats.speed: .brown,
-            stats.strength: .red
+        let dicEstatistica:  [Color:Int] = [
+            .green: Int(stats.combat) ?? 0,
+            .brown: Int(stats.speed) ?? 0,
+            .red: Int(stats.strength) ?? 0,
+            .blue: Int(stats.durability) ?? 0,
+            .orange: Int(stats.intelligence) ?? 0
         ]
         
-        let arrayLeyenda: [String] = ["Combate", "Durabilidad", "Inteligencia", "Velocidad", "Fuerza"]
-
+        let totalPoderes:Int = dicEstatistica.values.reduce(0, +)  // Sumar todos los valores
+        
+        let arrayLeyenda: [String] = ["Combate", "Velocidad", "Fuerza", "Resistencia", "Inteligencia"]
+        
         VStack {
             Text("Estadísticas")
                 .font(.title2)
                 .bold()
                 .padding(.horizontal, 15)
                 .foregroundStyle(Color.white)
+                .padding(.top, 30)
+            
             
             Chart{
-                ForEach(Array(dicEstatistica.keys), id: \.self){ key in
+                ForEach(Array(dicEstatistica.enumerated()), id: \.element.key){ index, element in
                     
-                    let poder = Int(key)
-                    let colorSection = dicEstatistica[key] ?? Color.black
-                    
+                    let poder = element.value
+                    let colorSection = element.key
+             
                     SectorMark(
-                        angle: .value("Counter", poder ?? 0), // el ángulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
+                        angle: .value("Counter", poder), // el ángulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
                         innerRadius: .ratio(0.5), // el grosor del donut
                         angularInset: 2 // Espaciado, separacion entre por sección
                     )
                     .cornerRadius(8)
                     .foregroundStyle(colorSection) // Usa el color dinámico
                     // .foregroundStyle(by: .value("Category", "Combate")) // permite meter una leyenda de esta seccion,comentada porque me saca en otro color y no puedo modificarla
+                    
                 }
             }
-            .padding(16)
+            .padding(.bottom, 16)
             .frame(maxWidth: .infinity, maxHeight: 250)
-            .padding(32)
             
-            // Leyenda personalizada
-            let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)] // Dos columnas flexibles
-
-            LazyVGrid(columns: columns, spacing: 16) { // Espaciado entre filas
-               
-                ForEach(Array(dicEstatistica.values.enumerated()), id: \.element){  index, value in // enumerated() para poder obtener tb el index
+            // Leyenda personalizada (las 3 primeras)
+            HStack{
+                ForEach(Array(dicEstatistica.enumerated()), id: \.element.key){ index, element in // enumerated() para poder obtener tb el index
                     
-                    let colorSection:Color = value
+                    let colorSection:Color = element.key
                     let nombreSection:String = arrayLeyenda[index]
+                    let percentage = (Double(element.value) / Double(totalPoderes)) * 100 // Calcular el porcentaje
                     
-                    Circle()
-                        .fill(colorSection) // Color para el combate
-                        .frame(width: 10, height: 10)
-                    Text(nombreSection) // Texto de la leyenda
-                        .foregroundColor(.white) // Texto blanco para la leyenda
-                        .font(.footnote)
+                    if index < 3 {
+                        Circle()
+                            .fill(colorSection) // Color para el combate
+                            .frame(width: 8, height: 8)
+                        Text("\(nombreSection) - \(String(format: "%.1f%%", percentage))") // Texto de la leyenda
+                            .foregroundColor(.white) // Texto blanco para la leyenda
+                            .font(.footnote)
+                            .padding(.trailing, 1)
+                    }
+                    
                 }
-    
-            }.padding(.horizontal, 16) // Márgenes laterales para todo el contenedor
+                
+            }.frame(maxWidth: 380)
             
-         
+            // Leyenda personalizada (las 2 siguientes)
+            HStack{
+                ForEach(Array(dicEstatistica.enumerated()), id: \.element.key){ index, element in // enumerated() para poder obtener tb el index
+                    
+                    let colorSection:Color = element.key
+                    let nombreSection:String = arrayLeyenda[index]
+                    let percentage = (Double(element.value) / Double(totalPoderes)) * 100 // Calcular el porcentaje
+                    
+                    if index > 2 {
+                        Circle()
+                            .fill(colorSection) // Color para el combate
+                            .frame(width: 8, height: 8)
+                        Text("\(nombreSection) - \(String(format: "%.1f%%", percentage))") // Texto de la leyenda
+                            .foregroundColor(.white) // Texto blanco para la leyenda
+                            .font(.footnote)
+                            .padding(.trailing, 10)
+                    }
+                    
+                }
+                
+            }.frame(maxWidth: 380)
         }
     }
     

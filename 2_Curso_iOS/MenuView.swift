@@ -30,8 +30,8 @@ struct MenuView: View {
                 .border(.appBackground,width: 3)
                 .cornerRadius(5)
                 .listStyle(.plain) // Opcional: estilo de lista
-         
-        }
+            
+        }.tint(.white) // EL ICONO DE LA LFECHA DE ATRAS CABMIARLO A COLOR BLANCO
     }
 }
 

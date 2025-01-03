@@ -67,6 +67,8 @@ struct SuperHeroBuscador: View {
             Spacer()
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBackground)
+            .navigationTitle("Listado de Superheroes")
+            .foregroundStyle(Color.white)
     }
 }
 
