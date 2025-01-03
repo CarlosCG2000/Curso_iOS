@@ -22,8 +22,14 @@ struct SitiosFavoritos: View {
     // Dentro del pop up
     @State var name:String = ""
     @State var fav:Bool = false
+    
     @State private var showError: Bool = false // Nueva variable para mostrar el error
-
+    @State private var errorMessage: String = "" // Nueva variable para mostrar el mensaje de error
+    
+    @State var showSheet:Bool = false // para mostrar el listado
+    let heightPersonalizada = stride(from: 0.3, through: 0.3, by: 0.1) // tamaño fijo del sheet, donde va a empezar el boton sheet cuando salga, cual va a ser la altura maxima, cuanto sube cuando hacemos scroll
+        .map{ PresentationDetent.fraction($0)} // para que calcule el tamaño y no se vuelva loco
+    
     var body: some View {
         
         ZStack {
@@ -44,7 +50,7 @@ struct SitiosFavoritos: View {
                             
                         }
                     }
-                }.mapStyle(.hybrid(elevation: .realistic, showsTraffic: true)) //Tipos de mapas: standar, hybrid, imagery - showsTraffic: true --> el estado de las carreteras, etc
+                }.mapStyle(.standard) //Tipos de mapas: standard, hybrid, imagery - showsTraffic: true --> el estado de las carreteras, etc
                 .onTapGesture { coord in
                 
                     if let coordinates = proxy.convert(coord, from: .local)
@@ -52,6 +58,20 @@ struct SitiosFavoritos: View {
                         showPopUp = coordinates
                     }
                 
+                }
+                .overlay { // vista por encima
+                    VStack {
+                        Button("Show list") {
+                            showSheet = true
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.cyan.opacity(0.8))
+                        .foregroundStyle(.black)
+                        .cornerRadius(16)
+                        .padding(16)
+                        Spacer()
+                    }
                 }
                 
             }
@@ -69,10 +89,11 @@ struct SitiosFavoritos: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(showError ? Color.red : Color.clear, lineWidth: 2) // Resaltar borde si hay error
                             )
-                                
+                          
+                    // Si hay error en el input (por dejarlo vacio)
                     if showError {
                         HStack {
-                            Text("El nombre no puede estar vacío.")
+                            Text(errorMessage)
                                 .font(.caption)
                                 .foregroundColor(.red)
                             Spacer() // Agrega espacio después para empujar el texto hacia la izquierda
@@ -84,7 +105,11 @@ struct SitiosFavoritos: View {
                     Spacer()
                     Button("Guardar"){ // LA ACCIÓN CUANDO SE DA A GUARDAR
                         if name.isEmpty {
-                            showError = true // Muestra el mensaje de error
+                            errorMessage = "El nombre no puede estar vacío."
+                            showError = true
+                        } else if name.count <= 3 {
+                            errorMessage = "El nombre debe tener más de 3 caracteres."
+                            showError = true
                         } else {
                             savePlace(name:name, fav: fav, coordinates: showPopUp!)
                             clearForm() // para que limpie el input y toogle del formulario y que me cierre el Pop up
@@ -98,10 +123,40 @@ struct SitiosFavoritos: View {
                     },          onDismissOutside: true /* si quiero que se pueda cerrar desde fuera o no */,
                                 content:view)
                 }
-                
             }
+           
+        // PARA MOSTRAR EL LISTADO
+        }.sheet(isPresented: $showSheet){  // ZStack:
+            ZStack{
+                // CREAR LA LISTA HORIZONTAL DE LOS LUGARES FAVORITOS
+                ScrollView(.horizontal){ // scrooll horizontal (por defecto es vertical)
+                    LazyHStack{
+                        ForEach(places){ place in
+                            let color = place.fav ? Color.yellow : Color.red
+                            
+                            VStack {
+                                Text(place.name)
+                                    .font(.title)
+                                    .bold()
+                            }.frame(width: 150, height: 100).overlay {
+                                RoundedRectangle(cornerRadius: 20).stroke(color, lineWidth: 2)
+                            }
+                            .shadow(radius: 10)
+                            .padding(.horizontal, 8)
+                            .onTapGesture { // podemos controlar el click del elemento para que nos lleve a su dirección
+                                animateCamera(coord: place.coordinates)
+                                showSheet = false
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }.presentationDetents(Set(heightPersonalizada))
             
-        }.background(.appBackground)
+        }.onAppear(){ // cuando aparezca la vista
+            cargarPlaces() // se llamara a la extensión 'BD_UserDefaults' que contiene la funcion cargarPlaces(), para cargar los places guardados
+        }
     }
     
     // Función guardar (dentro de la estructura porque es para ella)
@@ -112,6 +167,7 @@ struct SitiosFavoritos: View {
         
         let place = Place(name: name, coordinates: coordinates,  fav: fav)
         places.append(place)
+        guardarPlaces() // reemplaza y guardarllamando a la extensión 'BD_UserDefaults' los places para tenerlo de manera persistente
     }
     
     // Función para limpiar el formulario y cerrar el Pop Up, una vez guardado
@@ -119,7 +175,16 @@ struct SitiosFavoritos: View {
         name = ""
         fav = false
         showPopUp = nil
-        
+    }
+    
+    // Función que a través de unas coordenadas te redirige a la posición en el mapa
+    func animateCamera(coord:CLLocationCoordinate2D) {
+        withAnimation {
+            position = MapCameraPosition.region(
+                MKCoordinateRegion(center: coord,
+                                   span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+            )
+        }
     }
 }
 

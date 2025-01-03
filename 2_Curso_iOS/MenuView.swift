@@ -31,7 +31,7 @@ struct MenuView: View {
             .cornerRadius(5)
             .listStyle(.plain) // Opcional: estilo de lista
             
-        }.tint(.white) // EL ICONO DE LA LFECHA DE ATRAS CABMIARLO A COLOR BLANCO
+        }.tint(.blue) // EL ICONO DE LA LFECHA DE ATRAS CABMIARLO A COLOR BLANCO
     }
 }
 

@@ -16,12 +16,12 @@ struct __Curso_iOSApp: App {
         
         // Configuración del título en la barra de navegación (toolbar)
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.white,
+            .foregroundColor: UIColor.blue, // UIColor.white,
             .font: UIFont.boldSystemFont(ofSize: 20) // Texto en negrita, tamaño 20
         ]
     
          appearance.buttonAppearance.normal.titleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.blue, // UIColor.white,
          ] // Color del botón "Back" para ir hacia atra
         
         // Aplicar la apariencia a UINavigationBar
