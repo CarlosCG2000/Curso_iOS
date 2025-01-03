@@ -43,7 +43,17 @@ struct SuperHeroDetails: View {
                         Text(superHeroe.name).bold().font(.title).foregroundStyle(Color.white)
                         
                         ForEach(superHeroe.biography.aliases, id:\.self){ alias in //'self' el propio objeto sea el id
-                            Text(alias).foregroundStyle(Color.white).italic().font(.title3)
+                            
+                            if alias.contains(";"){
+                                let dividedArray = alias.split(separator: ";") // divida el string con ";"
+                                    .map { String($0) } // Convierte las subsecuencias resultantes (Substring) en String.
+                                
+                                ForEach(dividedArray, id:\.self){ aliasDelimitado in
+                                    Text(aliasDelimitado).foregroundStyle(Color.white).italic().font(.title3)
+                                }
+                            } else {
+                                Text(alias).foregroundStyle(Color.white).italic().font(.title3)
+                            }
                         }
                         
                         SuperHeroStats(stats: superHeroe.powerstats)
@@ -71,101 +81,71 @@ struct SuperHeroDetails: View {
     }
 }
 
-
 struct SuperHeroStats:View {
+    
     let stats:ApiNetwork.Powestats
     
     var body: some View {
+        
+        let dicEstatistica: [String: Color] = [
+            stats.combat: .green,
+            stats.durability: .blue,
+            stats.intelligence: .orange,
+            stats.speed: .brown,
+            stats.strength: .red
+        ]
+        
+        let arrayLeyenda: [String] = ["Combate", "Durabilidad", "Inteligencia", "Velocidad", "Fuerza"]
+
         VStack {
             Text("Estadísticas")
                 .font(.title2)
                 .bold()
+                .padding(.horizontal, 15)
                 .foregroundStyle(Color.white)
             
             Chart{
-                SectorMark(angle: .value("Counter", Int(stats.combat) ?? 0), // el angulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
-                           innerRadius: .ratio(0.5), // el grosor del donutn
-                           angularInset: 2 // separacion entre los huecos
-                ).cornerRadius(8) // los bordes personalizados
-                    // .foregroundStyle(by: .value("Category", "Combate")) // permite meter una referencia de que es cada cosa
-                    .foregroundStyle(Color.green)
-
-                SectorMark(angle: .value("Counter", Int(stats.durability) ?? 0), // el angulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
-                           innerRadius: .ratio(0.5), // el grosor del donutn
-                           angularInset: 2 // separacion entre los huecos
-                ).cornerRadius(8) // los bordes personalizados
-               // .foregroundStyle(by: .value("Category", "Durabilidad")) // permite meter una referencia de que es cada cosa
-                    .foregroundStyle(Color.blue)
-                
-                SectorMark(angle: .value("Counter", Int(stats.intelligence) ?? 0), // el angulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
-                           innerRadius: .ratio(0.5), // el grosor del donutn
-                           angularInset: 2 // separacion entre los huecos
-                ).cornerRadius(8) // los bordes personalizados
-            // .foregroundStyle(by: .value("Category", "Inteligencia")) // permite meter una referencia de que es cada cosa
-                    .foregroundStyle(Color.orange)
-                
-                SectorMark(angle: .value("Counter", Int(stats.speed) ?? 0), // el angulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
-                           innerRadius: .ratio(0.5), // el grosor del donutn
-                           angularInset: 2 // separacion entre los huecos
-                ).cornerRadius(8) // los bordes personalizados
-                    //.foregroundStyle(by: .value("Category", "Velocidad")) // permite meter una referencia de que es cada cosa
-                    .foregroundStyle(Color.brown)
-                
-                SectorMark(angle: .value("Counter", Int(stats.strength) ?? 0), // el angulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
-                           innerRadius: .ratio(0.5), // el grosor del donutn
-                           angularInset: 2 // separacion entre los huecos
-                ).cornerRadius(8) // los bordes personalizados
-                   // .foregroundStyle(by: .value("Category", "Fuerza")) // permite meter una referencia de que es cada cosa
-                    .foregroundStyle(Color.red)
-                
+                ForEach(Array(dicEstatistica.keys), id: \.self){ key in
+                    
+                    let poder = Int(key)
+                    let colorSection = dicEstatistica[key] ?? Color.black
+                    
+                    SectorMark(
+                        angle: .value("Counter", poder ?? 0), // el ángulo va a ser un valor llamado 'Count' con 'stats.combat' como valor, luego el radio y el angulo serán personalizaciones
+                        innerRadius: .ratio(0.5), // el grosor del donut
+                        angularInset: 2 // Espaciado, separacion entre por sección
+                    )
+                    .cornerRadius(8)
+                    .foregroundStyle(colorSection) // Usa el color dinámico
+                    // .foregroundStyle(by: .value("Category", "Combate")) // permite meter una leyenda de esta seccion,comentada porque me saca en otro color y no puedo modificarla
+                }
             }
+            .padding(16)
+            .frame(maxWidth: .infinity, maxHeight: 250)
+            .padding(32)
             
+            // Leyenda personalizada
+            let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)] // Dos columnas flexibles
+
+            LazyVGrid(columns: columns, spacing: 16) { // Espaciado entre filas
+               
+                ForEach(Array(dicEstatistica.values.enumerated()), id: \.element){  index, value in // enumerated() para poder obtener tb el index
+                    
+                    let colorSection:Color = value
+                    let nombreSection:String = arrayLeyenda[index]
+                    
+                    Circle()
+                        .fill(colorSection) // Color para el combate
+                        .frame(width: 10, height: 10)
+                    Text(nombreSection) // Texto de la leyenda
+                        .foregroundColor(.white) // Texto blanco para la leyenda
+                        .font(.footnote)
+                }
+    
+            }.padding(.horizontal, 16) // Márgenes laterales para todo el contenedor
+            
+         
         }
-        .padding(16)
-        .frame(maxWidth: .infinity, maxHeight: 250)
-        .padding(32)
-        
-        // Leyenda personalizada
-           HStack {
-               Circle()
-                   .fill(Color.green) // Color para el combate
-                   .frame(width: 10, height: 10)
-               Text("Combate")
-                   .foregroundColor(.white) // Texto blanco para la leyenda
-                   .font(.footnote)
-               
-               Circle()
-                   .fill(Color.blue) // Color para el combate
-                   .frame(width: 10, height: 10)
-               Text("Durabilidad")
-                   .foregroundColor(.white) // Texto blanco para la leyenda
-                   .font(.footnote)
-               
-               Circle()
-                   .fill(Color.orange) // Color para el combate
-                   .frame(width: 10, height: 10)
-               Text("Inteligencia")
-                   .foregroundColor(.white) // Texto blanco para la leyenda
-                   .font(.footnote)
-               
-               Circle()
-                   .fill(Color.brown) // Color para el combate
-                   .frame(width: 10, height: 10)
-               Text("Velocidad")
-                   .foregroundColor(.white) // Texto blanco para la leyenda
-                   .font(.footnote)
-           }
-        
-        HStack {
-            Circle()
-                .fill(Color.red) // Color para el combate
-                .frame(width: 10, height: 10)
-            Text("Fuerza")
-                .foregroundColor(.white) // Texto blanco para la leyenda
-                .font(.footnote)
-        }
-        
-        
     }
     
 }
@@ -179,5 +159,5 @@ struct leyendaTexto: View {
 }
 
 #Preview {
-    SuperHeroDetails(id:"44")
+    SuperHeroDetails(id:"641")
 }
