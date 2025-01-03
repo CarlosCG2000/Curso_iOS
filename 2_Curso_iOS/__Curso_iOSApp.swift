@@ -24,9 +24,7 @@ struct __Curso_iOSApp: App {
             .foregroundColor: UIColor.white
          ] // Color del botón "Back" para ir hacia atra
         
-        
         // Aplicar la apariencia a UINavigationBar
-        UINavigationBar.appearance().tintColor = UIColor.purple // Cambiar el color de la flecha de "Back" ❌
         UINavigationBar.appearance().standardAppearance = appearance
     }
     
