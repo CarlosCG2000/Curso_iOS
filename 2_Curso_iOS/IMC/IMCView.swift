@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// PANTALLA PRINCIPAL: ÍNDICE DE MASA CORPORAL
+// Vista principal: IMCView
 // 1. Cuidado con el orden de los modificadores
 // 2. Añadir de forma diferent el color del Toolbar
 struct IMCView: View {
@@ -23,18 +23,18 @@ struct IMCView: View {
         // Contenedor principal
         VStack{
             HStack{
-                ToogleButton(text:"Hombre", imageName: "figure.stand", genero: 0, selectedGenero: $genero)
-                ToogleButton(text:"Mujer", imageName: "figure.stand.dress", genero: 1, selectedGenero: $genero)
+                ToogleButton(text:"Hombre", imageName: "figure.stand", genero: 0, selectedGenero: $genero) // 1_Vista Secundaria
+                ToogleButton(text:"Mujer", imageName: "figure.stand.dress", genero: 1, selectedGenero: $genero) // 1_Vista Secundaria
             }
             
-            CalculadorAltura(selectedAltura: $altura)
+            CalculadorAltura(selectedAltura: $altura) // 3_Vista Secundaria
             
             HStack{
-                ContadorParametro(textTitle: "Edad", contador: $contadorEdad)
-                ContadorParametro(textTitle: "Peso", contador: $contadorPeso)
+                ContadorParametro(textTitle: "Edad", contador: $contadorEdad) // 5_Vista Secundaria
+                ContadorParametro(textTitle: "Peso", contador: $contadorPeso) // 5_Vista Secundaria
             }
             
-            BotonFinal(peso: Double(contadorPeso), altura: altura)
+            BotonFinal(peso: Double(contadorPeso), altura: altura) // 7_Vista Secundaria
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity) // ocupe toda la vista
             .background(.appBackground) // color del fondo
@@ -51,6 +51,7 @@ struct IMCView: View {
     }
 }
 
+// 1_Vista Secundaria (1 sección con un toogle personalizado con dos botones para elegir entre hombre y mujer)
 struct ToogleButton:View{
     
     let text:String
@@ -74,7 +75,7 @@ struct ToogleButton:View{
                     .foregroundColor(.white)
                     .frame(height: 100)
                 
-                InformationText(text: text) // Estrucuta InformationText de texto
+                InformationText(text: text) // 2_Vista Secundaria
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(color) //variable: dependiendo si ha sido seleccionado o no
@@ -82,7 +83,7 @@ struct ToogleButton:View{
     }
 }
 
-
+// 2_Vista Secundaria (todos los textos de los nombres personalizados para no tenerlo que repetir)
 struct InformationText:View {
     
     let text:String
@@ -95,6 +96,7 @@ struct InformationText:View {
     }
 }
 
+// 3_Vista Secundaria (2 sección con el slider con la altura)
 struct CalculadorAltura:View {
     
     @Binding var selectedAltura:Double
@@ -102,8 +104,8 @@ struct CalculadorAltura:View {
     var body: some View {
         
         VStack {
-            TitleText(text: "Altura")
-            InformationText(text: "\(Int(selectedAltura)) cm")
+            TitleText(text: "Altura")  // 4_Vista Secundaria
+            InformationText(text: "\(Int(selectedAltura)) cm") // 2_Vista Secundaria
             Slider(value: $selectedAltura, in: 100...230, step: 2)
                 .accentColor(Color.purple)
                 .padding(.horizontal, 20)
@@ -113,6 +115,7 @@ struct CalculadorAltura:View {
     }
 }
 
+// 4_Vista Secundaria (todos los textos de los secundarios personalizados para no tenerlo que repetir)
 struct TitleText:View {
     
     let text:String
@@ -124,6 +127,7 @@ struct TitleText:View {
     }
 }
 
+// 5_Vista Secundaria (sección 3 y 4, son iguales con distinta información, son contadores con dos botones)
 struct ContadorParametro:View{
     
     let textTitle:String
@@ -131,14 +135,13 @@ struct ContadorParametro:View{
     
     var body: some View {
         VStack{
-            TitleText(text: textTitle)
-            InformationText(text:"\(contador)")
+            TitleText(text: textTitle) // 4_Vista Secundaria
+            InformationText(text:"\(contador)") // 2_Vista Secundaria
             
             HStack{
-                BotonContador(icono: "minus", contador: $contador)
-                BotonContador(icono: "plus", contador: $contador)
+                BotonContador(icono: "minus", contador: $contador) // 6_Vista Secundaria
+                BotonContador(icono: "plus", contador: $contador)  // 6_Vista Secundaria
             }
-            
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.componentBackground)
@@ -146,6 +149,7 @@ struct ContadorParametro:View{
     }
 }
 
+// 6_Vista Secundaria (botón contador, estilo a los botones que se van a encontrar en los contadores 'sect 3 y 4')
 struct BotonContador:View{
     
     let icono:String
@@ -179,6 +183,7 @@ struct BotonContador:View{
     }
 }
 
+// 7_Vista Secundaria (sección 7, muestra el boton para finalziar y navegar a la siguiente pantalla pasando parámetros)
 struct BotonFinal: View {
     
     let peso:Double

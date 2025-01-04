@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Vista principal: IMCResult
 struct IMCResult: View {
     let pesoUsuario: Double
     let alturaUsuario: Double
@@ -20,14 +21,38 @@ struct IMCResult: View {
                 .bold()
                 .foregroundColor(Color.white)
             
-            InformationView(result: result)
+            InformationView(result: result) // 1_Vista Secundaria
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBackground)
     }
 }
 
+// 1_Vista Secundaria (con todos los datos: estado (con color variante), resultado y descripcióm
+struct InformationView:View{
+    
+    let result:Double
+    
+    var body: some View {
+        let (estado, descripcion, color) = formatoResultado(result: result)
+        
+        VStack{
+            Spacer()
+            Text(estado).foregroundColor(color)
+                .font(.title).bold()
+            Spacer()
+            Text("\(Int(result))").foregroundColor(.white)
+                .font(.system(size:60)).bold()
+            Spacer()
+            Text(descripcion).font(.system(size:20))
+                .foregroundStyle(Color.white)
+                .multilineTextAlignment(.center) // Alinea el texto centrado en todas las líneas
+            Spacer()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.componentBackground).cornerRadius(20).padding(16)
+    }
+}
 
+// 2_Función calcular el IMC (a partir de peso y altura)
 func calcularIMC(peso:Double, altura:Double) -> Double{
     return peso/((altura/100)*(altura/100))
 }
@@ -70,29 +95,6 @@ func formatoResultado(result:Double) -> (String, String, Color){
     }
     
     return (estado, descripcion, color)
-}
-
-struct InformationView:View{
-    
-    let result:Double
-    
-    var body: some View {
-        let (estado, descripcion, color) = formatoResultado(result: result)
-        
-        VStack{
-            Spacer()
-            Text(estado).foregroundColor(color)
-                .font(.title).bold()
-            Spacer()
-            Text("\(Int(result))").foregroundColor(.white)
-                .font(.system(size:60)).bold()
-            Spacer()
-            Text(descripcion).font(.system(size:20))
-                .foregroundStyle(Color.white)
-                .multilineTextAlignment(.center) // Alinea el texto centrado en todas las líneas
-            Spacer()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.componentBackground).cornerRadius(20).padding(16)
-    }
 }
 
 #Preview {
