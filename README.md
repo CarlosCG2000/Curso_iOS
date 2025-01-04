@@ -54,7 +54,7 @@ o	Pantalla resultado
 ### 24.	Listas  ✅ 
 ### 25.	Superhero App  ✅
 o	API REST: https://superheroapi.com/
-KEY: ab9e879023c702cc77af432687850fc2
+KEY: XXXXXXXXX
 o	Consumiendo API
 o	Personalizando listas
 o	Cargando imágenes desde URL
