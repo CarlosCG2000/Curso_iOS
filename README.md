@@ -1,6 +1,6 @@
 ## 3 APP'S iOS en SWIFT desde CERO con SWIFTUI.
 
-![image](./)
+![image](./app-ios.png)
 
 ### 1.	Introducción ✅
 ### 2.	xCode ✅
