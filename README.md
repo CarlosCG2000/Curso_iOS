@@ -72,5 +72,3 @@ o	Listado places
 o	Persistencia de datos
 Con User Defaults (muy básica DB) (para borrar la DB seria borrando la App dentro del Iphone (emulador))
 ### 28.	Despedida ✅
-
-![image](https://github.com/user-attachments/assets/60c7fea3-7886-42d8-9c18-0fd47758795c)
