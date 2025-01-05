@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MENÚ PARA TODAS LAS APLICACIONES (3)
 struct MenuView: View {
     var body: some View {
         
