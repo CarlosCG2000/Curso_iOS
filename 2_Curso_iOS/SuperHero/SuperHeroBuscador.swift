@@ -56,7 +56,7 @@ struct SuperHeroBuscador: View {
                         
                         NavigationLink(destination: SuperHeroDetails(id: superhero.id)){ // ¿porque no meto dentro el  'SuperHeroItem(superhero: superhero)'? Debido a que sino me salidra la flecha de navegación y no quiero que salga
                             EmptyView()
-                        }.opacity(0) //lo hace completamente transparete para que no se veala flecha, pero aun asi es clickable
+                        }.opacity(0) //lo hace completamente transparete para que no se vea la flecha, pero aun asi es clickable
                         
                     }.listRowBackground(Color.componentBackground)
                     
