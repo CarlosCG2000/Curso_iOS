@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+// PRIMERA VISTA (PRINCIPAL)
 struct MainView: View {
     var body: some View {
-        MenuView()
+        MenuView() // llama a la primera vista funcional MenuView
     }
 }
 

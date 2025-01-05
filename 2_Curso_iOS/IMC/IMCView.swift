@@ -7,157 +7,160 @@
 
 import SwiftUI
 
-// Vista principal: IMCView
-// 1. Cuidado con el orden de los modificadores
-// 2. Añadir de forma diferent el color del Toolbar
+// VISTA PRINCIPAL: IMCView
+// (Cuidado con el orden de los modificadores)
 struct IMCView: View {
     
-    @State var genero:Int = 0 // esto se envia al ToogleButton (es como la caña de pescar)
-    @State var altura:Double = 150 // esto se envia a CalculadorAltura
+    // VARIABLES
+    //(@State --> para que se reflejen los cambios de las vistas secundarias (@Binding), añadir si se modifica en esta vista principal el '$')
+    @State var btValorGenero:Int = 0 // esto se envia al ToogleButton (con el @State como la caña de pescar)
     
-    @State var contadorEdad:Int = 18 // esto se envia a ContadorParametro
-    @State var contadorPeso:Int = 60 // esto se envia a ContadorParametro
+    @State var sliValorAltura:Double = 170 // esto se envia a CalculadorAltura
     
+    @State var contValorEdad:Int = 18 // esto se envia a ContadorParametro
+    @State var contValorPeso:Int = 60 // esto se envia a ContadorParametro
+    
+    // VISTA
     var body: some View {
         
-        // Contenedor principal
-        VStack{
-            HStack{
-                ToogleButton(text:"Hombre", imageName: "figure.stand", genero: 0, selectedGenero: $genero) // 1_Vista Secundaria
-                ToogleButton(text:"Mujer", imageName: "figure.stand.dress", genero: 1, selectedGenero: $genero) // 1_Vista Secundaria
+        VStack{ // VStack principal (contenido vertical)
+            
+            HStack{ // HStack (contenido horizontal)
+                // Sección botón personalizado (vista secundaria) (2)
+                // Al colocarse 2, hacen el efecto de un Toogle personalizado al colocarse juntos
+                ToogleButton(text:"Hombre", imageName: "figure.stand", genero: 0, selectedGenero: $btValorGenero)
+                ToogleButton(text:"Mujer", imageName: "figure.stand.dress", genero: 1, selectedGenero: $btValorGenero)
             }
             
-            CalculadorAltura(selectedAltura: $altura) // 3_Vista Secundaria
+            // Sección con Slider personalizado (vista secundaria)
+            CalculadorAltura(selectedAltura: $sliValorAltura)
             
-            HStack{
-                ContadorParametro(textTitle: "Edad", contador: $contadorEdad) // 5_Vista Secundaria
-                ContadorParametro(textTitle: "Peso", contador: $contadorPeso) // 5_Vista Secundaria
+            HStack{ // HStack (contenido horizontal)
+                // Sección de un contador con dos botones (vista secundaria)
+                ContadorParametro(textTitle: "Edad", contador: $contValorEdad)
+                ContadorParametro(textTitle: "Peso", contador: $contValorPeso)
             }
             
-            BotonFinal(peso: Double(contadorPeso), altura: altura) // 7_Vista Secundaria
+            // Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
+            BotonFinal(peso: Double(contValorPeso), altura: sliValorAltura, genero: btValorGenero , edad: contValorEdad) // Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
             
-        }.frame(maxWidth: .infinity, maxHeight: .infinity) // ocupe toda la vista
-            .background(.appBackground) // color del fondo
-            .navigationTitle("Índice de masa corporal") // 1 FORMA (personalizado en la APP)
-        /**.toolbar { // 2 FORMA (personalizado en el propio componente)
-         ToolbarItem(placement: .principal) { // Personaliza el título
-         Text("Índice de masa corporal")
-         .foregroundColor(.white) // Cambia el color del texto
-         .bold()
-         }
-         }*/
-        /**.navigationBarBackButtonHidden(true)  // Quitar el boton de ir para atrás */
-        
-    }
-}
-
-// 1_Vista Secundaria (1 sección con un toogle personalizado con dos botones para elegir entre hombre y mujer)
-struct ToogleButton:View{
-    
-    let text:String
-    let imageName:String
-    let genero:Int
-    @Binding var selectedGenero : Int// se recibe del IMCView (es como el anzuelo)
-    
-    var body:some View{
-        
-        let color = (genero == selectedGenero) ? Color.selectComponentBackground : Color.componentBackground
-        
-        Button(action:  {
-            selectedGenero = genero
         }
-        )
-        {
-            VStack{
-                Image(systemName: imageName) // Icono (por eso systemName)
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.white)
-                    .frame(height: 100)
-                
-                InformationText(text: text) // 2_Vista Secundaria
-            }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(color) //variable: dependiendo si ha sido seleccionado o no
-        //.border(Color.purple, width: 4)
+        //... Atributos de la VStack principal
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // tamaño de VStack
+            .background(.appBackground) // color del fondo personalizado
+            .navigationTitle("Índice de masa corporal") // Nombre de la Toolbar (1 forma - personalizado en _Curso:iOSApp)
+            /**.toolbar {  // Nombre de la Toolbar (2 forma - personalizado en aquí)
+                 ToolbarItem(placement: .principal) { // Personaliza el título
+                    Text("Índice de masa corporal")
+                         .foregroundColor(.white) // Cambia el color del texto
+                         .bold()
+                 }
+             }*/
+            /**.navigationBarBackButtonHidden(true)  // Eliminar el boton de ir para atrás */
     }
 }
 
-// 2_Vista Secundaria (todos los textos de los nombres personalizados para no tenerlo que repetir)
+// 1_Texto personalizado
 struct InformationText:View {
     
+    // Variable
     let text:String
     
     var body:some View {
         Text(text)
-            .font(.largeTitle)
-            .bold()
-            .foregroundColor(.white)
+            //... Atributos del texto
+            .font(.largeTitle) // tamaño
+            .bold() // grosor
+            .foregroundColor(.white) // color de letras
     }
 }
 
-// 3_Vista Secundaria (2 sección con el slider con la altura)
-struct CalculadorAltura:View {
+// 2_Sección botón personalizado (vista secundaria)
+struct ToogleButton:View{
     
-    @Binding var selectedAltura:Double
+    // Variables
+    let text:String
+    let imageName:String
+    let genero:Int
+    @Binding var selectedGenero:Int // se recibe del IMCView (es como el anzuelo), es clave para que los cambios en 'selectedGenero' se reflejen en la vista principal en la variable '@State var genero', que es la que se recibe.
     
     var body: some View {
         
-        VStack {
-            TitleText(text: "Altura")  // 4_Vista Secundaria
-            InformationText(text: "\(Int(selectedAltura)) cm") // 2_Vista Secundaria
-            Slider(value: $selectedAltura, in: 100...230, step: 2)
-                .accentColor(Color.purple)
-                .padding(.horizontal, 20)
-            
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.componentBackground)
+        // variable dinámica dependiendo si coincide el 'genero' con boton pulsado variable 'selectedGenero'
+        let color = (genero == selectedGenero) ? Color.selectComponentBackground : Color.componentBackground
+        
+        Button(action:  { // la acción del boton
+            selectedGenero = genero
+            }
+        )
+        { // el aspecto del boton
+            VStack {
+                Image(systemName: imageName) // icono de SF (por eso systemName)
+                    //... Atributos de la imagen
+                    .resizable() // que se reescale bien
+                    .scaledToFit() // o scaledToFill()
+                    .frame(height: 100) // dimensiones
+                    .foregroundColor(.white) // fondo
+                   
+                InformationText(text: text) // 1_Texto personalizado
+            }
+        }
+        //... Atributos de la boton
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // dimensiones
+        .background(color) //fondo de color dinamico dependiendo si ha sido seleccionado o no
+
     }
 }
 
-// 4_Vista Secundaria (todos los textos de los secundarios personalizados para no tenerlo que repetir)
+// 3_Texto personalizado 2
 struct TitleText:View {
     
     let text:String
     
     var body: some View {
         Text(text)
+        //... Atributos del Text
             .font(.title2)
             .foregroundColor(Color.gray)
     }
 }
 
-// 5_Vista Secundaria (sección 3 y 4, son iguales con distinta información, son contadores con dos botones)
-struct ContadorParametro:View{
+// 4_Sección con Slider personalizado (vista secundaria)
+struct CalculadorAltura:View {
     
-    let textTitle:String
-    @Binding var contador:Int
+    @Binding var selectedAltura:Double // valor del slider
     
     var body: some View {
-        VStack{
-            TitleText(text: textTitle) // 4_Vista Secundaria
-            InformationText(text:"\(contador)") // 2_Vista Secundaria
-            
-            HStack{
-                BotonContador(icono: "minus", contador: $contador) // 6_Vista Secundaria
-                BotonContador(icono: "plus", contador: $contador)  // 6_Vista Secundaria
-            }
-            
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.componentBackground)
         
+        VStack { // VStack unico
+            TitleText(text: "Altura")  //3_Texto personalizado 2
+            
+            InformationText(text: "\(Int(selectedAltura)) cm") // 1_Texto personalizado
+            
+            Slider(value: $selectedAltura, in: 100...230, step: 2) // valor, rangos, variables del valor
+                //... Atributos del Slider
+                .accentColor(Color.purple) // color
+                .padding(.horizontal, 20) // padding
+            
+        }
+        //... Atributos del VStack unico
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.componentBackground)
     }
 }
 
-// 6_Vista Secundaria (botón contador, estilo a los botones que se van a encontrar en los contadores 'sect 3 y 4')
+
+// 5_Botón contador
 struct BotonContador:View{
     
+    // Variables
     let icono:String
     @Binding var contador:Int
     
+    // Función contador segun el icono recibido
     func actionContador() -> Void {
-        if icono == "minus"{
-            if  contador > 0{
+        if icono == "minus" {
+            if  contador > 0 {
                 contador -= 1
             }
         } else {
@@ -168,14 +171,16 @@ struct BotonContador:View{
     }
     
     var body: some View {
-        Button(action:actionContador)
-        {
+        Button(action:actionContador) // accion boton
+        { // aspecto boton
             Image(systemName: icono)
+            //... Atributos del Imagen
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30, height: 30)
                 .foregroundColor(Color.white)
         }
+        //... Atributos del boton
         .padding(15)
         .background(.purple)
         .clipShape(Circle()) // Hace que el botón sea completamente redondo
@@ -183,19 +188,54 @@ struct BotonContador:View{
     }
 }
 
-// 7_Vista Secundaria (sección 7, muestra el boton para finalziar y navegar a la siguiente pantalla pasando parámetros)
-struct BotonFinal: View {
+// 6_Sección de un contador con dos botones (vista secundaria)
+struct ContadorParametro:View{
     
-    let peso:Double
-    let altura: Double
+    // Variables
+    let textTitle:String
+    @Binding var contador:Int
     
     var body: some View {
         
-        NavigationStack
+        VStack{
+            TitleText(text: textTitle) // 3_Texto Personalizado 2
+            InformationText(text:"\(contador)") // 1_Texto Personalizado
+            
+            HStack{
+                // Botones
+                BotonContador(icono: "minus", contador: $contador) // 5_Botón contador
+                BotonContador(icono: "plus", contador: $contador)  // 5_Botón contador
+            }
+            
+        }
+        //... Atributos del VStack
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // dimensiones
+            .background(.componentBackground) // fondo de color
+        
+    }
+}
+
+// 7_Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
+struct BotonFinal: View {
+    
+    // Variables
+    let peso:Double
+    let altura: Double
+    let genero:Int
+    let edad:Int
+    
+    func generoNombre() -> String {
+        return genero == 0 ? "Hombre" : "Mujer"
+    }
+    
+    var body: some View {
+        
+        NavigationStack // contenedor de navegación
         {
-            NavigationLink(destination: {IMCResult(pesoUsuario:peso, alturaUsuario:altura)})
+            NavigationLink(destination: {IMCResult(pesoUsuario:peso, alturaUsuario:altura, generoUsuario: generoNombre(), edadUsuario: edad)}) // Link navegación al IMCResult
             {
                 Text("Finalizar")
+                    // Atributos del Text
                     .foregroundColor(Color.purple)
                     .font(.title)
                     .bold()
