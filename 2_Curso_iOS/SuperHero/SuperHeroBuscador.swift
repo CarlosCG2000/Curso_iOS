@@ -8,20 +8,23 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+// VISTA PRINCIPAL: SuperHeroBuscador
 struct SuperHeroBuscador: View {
     
-    @State var superheroName: String = ""
-    @State var wrapper:ApiNetwork.Wrapper? = nil
-    @State var loading = false
+    // VARIABLES
+    @State var superheroName: String = "" // string del texto que se pone en el Textfield
+    @State var wrapper:ApiNetwork.Wrapper? = nil // clase personalizada, al obtener el json de la apli de superheroes
+    @State var loading = false // para cargar la vista mientras filtra la búsqueda de superheroes en el Textfield
     
     var body: some View {
         
-        VStack{
-            TextField("",   text: $superheroName,
-                      prompt: Text("Superman, Harry Potter...")
-                .font(.title2)
-                .bold()
-                .foregroundStyle(Color.gray))
+        VStack{ // VStack principal
+            // __________ Input de búsqueda para filtrar del listado de superheroes (API) __________
+            TextField("", text: $superheroName, prompt: Text("Superman, Harry Potter...")
+                                                        .font(.title2)
+                                                        .bold()
+                                                        .foregroundStyle(Color.gray))
+            //... Atributos de la TextField
             .font(.title2)
             .bold()
             .foregroundStyle(Color.white)
@@ -29,57 +32,92 @@ struct SuperHeroBuscador: View {
             .border(.purple, width: 2)
             .cornerRadius(5)
             .padding(10)
-            .autocorrectionDisabled() // de apple que hace el autocompletado deshabilitarlo
-            .onSubmit {
-                loading = true
+            .autocorrectionDisabled() // de apple que hace el autocompletado se deshabilitarlo
+            .onSubmit { // cuando pulses el enter
+                
+                loading = true // se carga la pantalla al principio
                 
                 Task{
                     do{
-                        wrapper = try await ApiNetwork().getHeroesByQuery(query: superheroName)
-                    }catch{
+                        // La información en formato json recogida de la API: https://superheroapi.com/, de forma asincrona
+                        wrapper = try await ApiNetwork().getHeroesByQuery(query: superheroName) // llamada al fichero ApiNetwork
+                        
+                    } catch {
                         print("Error: \(error)")
                     }
                     
-                    loading = false
+                    loading = false // se quita la carga cuando ya estan obtenido el json
                 }
             }
+            // ___________________________________________________
             
-            if loading{
+            // _____ Cargar la pantalla _____
+            if loading { // mientras sea true
                 ProgressView().tint(Color.white)
             }
-            
-            NavigationStack{
-                List (wrapper?.results ?? []){ superhero in
-                    // Text(superhero.name)
-                    ZStack{
-                        SuperHeroItem(superhero: superhero)
-                        
-                        NavigationLink(destination: SuperHeroDetails(id: superhero.id)){ // ¿porque no meto dentro el  'SuperHeroItem(superhero: superhero)'? Debido a que sino me salidra la flecha de navegación y no quiero que salga
-                            EmptyView()
-                        }.opacity(0) //lo hace completamente transparete para que no se vea la flecha, pero aun asi es clickable
-                        
-                    }.listRowBackground(Color.componentBackground)
-                    
-                }.listStyle(.plain)
-                //.background(Color.componentBackground)
+    
+            // _______________ Contenedor con el listado de superheroes  _______________
+            // Se denomina desempaquetado opcional (optional unwrapping), y es necesario cuando se trabaja con valores opcionales
+            if let results = wrapper?.results { // desempaquetado opcional
+                
+                if results.isEmpty { // si results = [] (porque ha dado error, declarado ApiNetwork)
+                    Spacer()
+                    Spacer()
+                    Text("No existen superhéroes con ese nombre")
+                        .foregroundColor(.red)
+                        .font(.headline)
+                    Spacer()
+                } else {
+                    NavigationStack {
+                        // results, son los superheroes mostrados [SuperHero]
+                        List (results){ superhero in
+                            
+                            // Para que me salga solo item del superheroe con la navegacion (pero sin aspecto solo con la funcionalidad de navegar)
+                            ZStack {
+                                
+                                // Sección con la información de un Superheroe
+                                SuperHeroItem(superhero: superhero)
+                                
+                                // ¿Porque meto vacio (EmptyView) y transparente (opacity(0)) en la navegación?
+                                // Debido a que sino me saldria la flecha de navegación y no quiero que salga
+                                NavigationLink(destination: SuperHeroDetails(id: superhero.id)){
+                                    EmptyView()
+                                }
+                                //... Atributos de la NavigationLink
+                                .opacity(0) // lo hace completamente transparete para que no se vea la flecha, pero aun asi es clickable
+                                
+                            }
+                            //... Atributos de la ZStack
+                            .listRowBackground(Color.componentBackground)
+                            
+                        }
+                        //... Atributos de la lista (list)
+                        .listStyle(.plain)
+                        //.background(Color.componentBackground)
+                    }
+                }
             }
+            // __________________________________________________________________________
             
             Spacer()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.appBackground)
-            .navigationTitle("Listado de Superheroes")
-            .foregroundStyle(Color.white)
+        }
+        //... Atributos de la VStack principal
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.appBackground)
+        .navigationTitle("Listado de Superheroes")
+        .foregroundStyle(Color.white)
     }
 }
 
+// 1_Sección con la información de un Superheroe (vista secundarioa)
 struct SuperHeroItem:View {
     
-    let superhero: ApiNetwork.SuperHero
+    let superhero: ApiNetwork.SuperHero // el superheroe
     
     var body: some View {
         ZStack{
             // Rectangle()
-            WebImage(url: URL(string: superhero.image.url))
+            WebImage(url: URL(string: superhero.image.url)) //imagen
                 .resizable()
                 .indicator(.activity) // un icono para que se vea que se esta cargando las imagenes
                 .scaledToFill()
@@ -87,15 +125,18 @@ struct SuperHeroItem:View {
             
             VStack{
                 Spacer()
-                Text(superhero.name).foregroundStyle(Color.black)
+                Text(superhero.name) // imagen
+                    .foregroundStyle(Color.black)
                     .font(.title)
                     .bold()
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.white.opacity(0.5))
             }
-        }.frame(height:200)
-            .cornerRadius(25)
+        }
+        //... Atributos de la ZStack
+        .frame(height:200)
+        .cornerRadius(25)
         //.listRowBackground(Color.componentBackground)
     }
 }

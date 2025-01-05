@@ -41,7 +41,7 @@ Para crear un fichero (command + n)
 `MainView`: es la primera vista (la principal), solo llama a la primera vista funcional que es el menu (MenuView)
 `MenuView`: es la primera vista funcional, donde se encuentra el menú para navegar a las aplicaciones (IMC, SuperHeroe, Mis Sitios)
 
-### 1_IMC App
+### 1_IMC App ✅
 `IMCView`: es la principal vista de esta primera app.
 1. IMCView: vista principal
 2. InformationText: texto personalizado
@@ -60,15 +60,24 @@ Para crear un fichero (command + n)
 
 [ Listas ]
 
-### 2_SuperHeroe App
-* API REST: `https://superheroapi.com/`  (KEY: XXXXXXXXX)
-- Consumiendo API
-- Personalizando listas
-- Cargando imágenes desde URL
-* Librería: `https://github.com/SDWebImage/SDWebImage`
-- Perfilando detalles
-- Pantalla detalle
-- Gráficas
+### 2_SuperHeroe App ✅
+`ApiNetwork`: es una clase (no vista) donde se declara los modelos que se utilizan de la API y se hacen las llamadas a las API
+[ API REST: `https://superheroapi.com/`  (KEY: XXXXXXXXX) ]
+1. `Wrapper`: la estructura Wrapper que se recibe en el json de la API (tiene que ser Codable), ¡importante poner los mismos nombres que en JSON, (los que se quieran usar)!
+2. `SuperHero`: la estructura SuperHero, los datos que recogemos para formar un superheroe en json (recordar poner los mismos nombres que en JSON)
+3. `ImageSuperHero`: la estructura ImageSuperHero de la imagen del json
+4. `SuperHeroComplete`: la estructura de SuperHeroComplete, es otra llamada a la API que devuelve otro json (recordar poner los mismos nombres que en JSON)
+5. `Powestats`: la estructura de Powestats, con los poderes (recordar poner los mismos nombres que en JSON)
+6. `Biograph`: la estructura de Powestats, con la biografia (problema con la etiqueta full-name en json que no se puede poner igual aqui en el script) (recordar poner los mismos nombres que en JSON)
+7. `getHeroesByQuery`: función para obtener todos los heroes a través de un string
+8. `getHeroeById`: función para obtener un heroe en particular
+
+`SuperHeroBuscador`: vista principal
+[ LIBRERÍA: `https://github.com/SDWebImage/SDWebImage` (para poner una imagen sacada de una API)]
+1. `SuperHeroItem`: sección con la información de un Superheroe (vista secundaria) que se mostrará en el Listado
+
+`SuperHeroDetails`:
+1. `SuperHeroStats`: sección de las estadisticas del superheroe en una gráfica (vista secundaria)
 
 [ Mapas ]
 
