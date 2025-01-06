@@ -7,8 +7,8 @@
 
 import Foundation
 
-
-extension SitiosFavoritos { // es una extension, estamos conectados a todo lo de SitiosFavoritos, como puede ser la variable Place, pero asi esta mas escalable al no ponerlo todo en el mismo archivo
+// es una extension, que obtienen todos las variabels y funciones del la vista `SitiosFavoritos`, pero al ponerlas aqui es mas escalable y más limpio
+extension SitiosFavoritos { // estamos conectados a todo lo de SitiosFavoritos, como puede ser la variable Place, pero asi esta mas escalable al no ponerlo todo en el mismo archivo
     
     func guardarPlaces() {
         if let encodeData = try? JSONEncoder().encode(places) { // si funciona la variable encodeData entrará a en el if: vas a convertir el listado de places en un JSON
