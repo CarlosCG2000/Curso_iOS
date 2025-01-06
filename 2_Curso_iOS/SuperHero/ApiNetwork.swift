@@ -83,6 +83,7 @@ class ApiNetwork {
             return Wrapper(response: "", results: []) // Devuelve un Wrapper vacío en caso de URL inválida
         }
         
+        // Manejando los errores (es posible no poner el 'do y catch' y transpasar el error al siguiente nivel y que sea en ese siguiente nivel donde se realice el 'do y catch'. Por ejemplo hacerlo ya en la vista para poder mostrar en pantalla los errores directamente.
         do {
             let (data, _) = try await URLSession.shared.data(from: url) // obtener los datos de la API
                 
