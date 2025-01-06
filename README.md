@@ -6,7 +6,7 @@
 IDE oficial para Swift.
 Creación de folio en blanco sin crear aun un proyecto solo un ‘Playground’ en blanco (un fichero para hacer pruebas y ver resultados).
 
-## Swift (fichero pruebas --> no incluido aquí) 
+## Swift (`Components/SwiftEjemplo`)
 * 1. Variables
 - Operaciones
 - Conversiones
@@ -24,7 +24,7 @@ Para organizar el código pillamos todo el código (cmd + a) y pulsamos (ctrl + 
 Para crear un fichero (command + n)
 Para duplicar la línea (comando + d)
 
-* Componentes principales:
+* Componentes principales (`Components/...`):
 - Componente Text
 - Componente Image
 - Componente Slider
