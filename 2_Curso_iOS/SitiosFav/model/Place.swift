@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+// =========================== ESTO SERIA EN EL FICHERO DEL MODELO ===========================
 // Creamos una estructura clase para almacenar los sitios luego en la Db
 // Identifiable: Permite usar esta estructura directamente en vistas como List o ForEach al tener una propiedad única id.
 // Codable: Combina los protocolos Encodable y Decodable, permitiendo convertir esta estructura desde y hacia JSON.

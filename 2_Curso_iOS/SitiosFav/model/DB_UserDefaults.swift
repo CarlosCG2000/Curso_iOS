@@ -7,6 +7,7 @@
 
 import Foundation
 
+// =========================== ESTO SERIA EN EL FICHERO DEL REPOSITORIO (CON LA LÓGICA) ===========================
 // es una extension, que obtienen todos las variabels y funciones del la vista `SitiosFavoritos`, pero al ponerlas aqui es mas escalable y más limpio
 extension SitiosFavoritos { // estamos conectados a todo lo de SitiosFavoritos, como puede ser la variable Place, pero asi esta mas escalable al no ponerlo todo en el mismo archivo
     

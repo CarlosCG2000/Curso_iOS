@@ -11,6 +11,7 @@ class ApiNetwork {
     
     let apiKey = "ab9e879023c702cc77af432687850fc2"
     
+    // =========================== ESTA PARTE SERIA EN EL FICHERO DEL MODELO ===========================
     // 1_La estructura Wrapper que se recibe en el json de la API (tiene que ser Codable), ¡importante poner los mismos nombres que en JSON, (los que se quieran usar)!
     struct Wrapper: Codable { // parsear la información del JSON: Codable,
         let response:String
@@ -69,6 +70,7 @@ class ApiNetwork {
         }
     }
     
+    // =========================== ESTA PARTE SERIA EN EL FICHERO DEL REPOSITORIO (CON LA LÓGICA) ===========================
     // Listado de superheroes
     // https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/search/super
 
