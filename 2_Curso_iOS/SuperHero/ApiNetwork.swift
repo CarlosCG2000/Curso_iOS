@@ -69,6 +69,9 @@ class ApiNetwork {
         }
     }
     
+    // Listado de superheroes
+    // https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/search/super
+
     // 1_Función para obtener todos los heroes a través de un string
     func getHeroesByQuery(query: String) async throws -> Wrapper { // de forma 'async' al ser una llamada externa a un API, 'throws' significa que pueden dar un error no tinene porque solo devolver el Wrapper
 
@@ -92,6 +95,9 @@ class ApiNetwork {
         
     }
     
+    // Superheroe en particular por detalles
+    // https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/5
+    
     // 2_Función para obtener un heroe en particular
     func getHeroeById(id:String) async throws -> SuperHeroComplete? {
         
@@ -112,177 +118,3 @@ class ApiNetwork {
         }
     }
 }
-
-// Listado de superheroes
-// https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/search/super
-/** {
-"response": "success",
-"results-for": "super",
-"results": [
-    {
-    "id": "195",
-        "name": "Cyborg Superman",
-        "powerstats": {
-            "intelligence": "75",
-            "strength": "93",
-            "speed": "92",
-            "durability": "100",
-            "power": "100",
-            "combat": "80"
-        },
-        "biography": {
-            "full-name": "Henry Henshaw",
-            "alter-egos": "No alter egos found.",
-            "aliases": [
-                "Grandmaster of the Manhunters",
-                "Herald of the Anti-Monitor",
-                "Alpha-Prime of the Alpha Lanterns"
-            ],
-            "place-of-birth": "-",
-            "first-appearance": "Adventures of Superman #466 (May, 1990)",
-            "publisher": "DC Comics",
-            "alignment": "bad"
-        },
-        "appearance": {
-            "gender": "Male",
-            "race": "Cyborg",
-            "height": [
-                "-",
-                "0 cm"
-            ],
-            "weight": [
-                "- lb",
-                "0 kg"
-            ],
-            "eye-color": "Blue",
-            "hair-color": "Black"
-        },
-        "work": {
-            "occupation": "-",
-            "base": "Warworld, Qward, Antimatter Universe, formerly Biot, Sector 3601"
-        },
-        "connections": {
-            "group-affiliation": "Alpha Lantern Corps, Manhunters, Warworld, formerly Apokolips and Sinestro Corps",
-            "relatives": "Terri Henshaw (wife, deceased)"
-        },
-        "image": {
-            "url": "https://www.superherodb.com/pictures2/portraits/10/100/667.jpg"
-        }
-    },
- {
- "id": "641",
-    "name": "Superboy",
-    "powerstats": {
-    "intelligence": "75",
-    "strength": "95",
-    "speed": "83",
-    "durability": "90",
-    "power": "95",
-    "combat": "60"
-    },
-    "biography": {
-    "full-name": "Kon-El / Conner Kent",
-    "alter-egos": "No alter egos found.",
-    "aliases": [
-    "Experiment 13; Superman; Project: Superman; Carl Krummett; Project: Lionel Luthor; The Metropolis Kid",
-    "Superman"
-    ],
-    "place-of-birth": "Project Cadmus cloning facility",
-    "first-appearance": "Adventures of Superman #500 (June, 1993)",
-    "publisher": "DC Comics",
-    "alignment": "good"
-    },
-    "appearance": {
-    "gender": "Male",
-    "race": "null",
-    "height": [
-    "5'7",
-    "170 cm"
-    ],
-    "weight": [
-    "150 lb",
-    "68 kg"
-    ],
-    "eye-color": "Blue",
-    "hair-color": "Black"
-    },
-    "work": {
-    "occupation": "-",
-    "base": "San Francisco; Smallville; Formerly Metropolis; Formerly Honolulu"
-    },
-    "connections": {
-    "group-affiliation": "Teen Titans, Legion of Super-Heroes, Team Superman; Formerly Young Justice, Project Cadmus, Ravers",
-    "relatives": "Superman (Kryptonian genetic template), Lex Luthor (Human genetic template), Match (clone)"
-    },
-    "image": {
-    "url": "https://www.superherodb.com/pictures2/portraits/10/100/789.jpg"
-    }
- }
-}*/
-
-/**{
-"response": "error",
-"error": "character with given name not found"
-}*/
-
-// SUPERHEROE POR DETALLES
-// https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/5
-
-/**
- {
- "response": "success",
- "id": "5",
- "name": "Abraxas",
- "powerstats": {
- "intelligence": "88",
- "strength": "63",
- "speed": "83",
- "durability": "100",
- "power": "100",
- "combat": "55"
- },
- "biography": {
- "full-name": "Abraxas",
- "alter-egos": "No alter egos found.",
- "aliases": [
- "-"
- ],
- "place-of-birth": "Within Eternity",
- "first-appearance": "Fantastic Four Annual #2001",
- "publisher": "Marvel Comics",
- "alignment": "bad"
- },
- "appearance": {
- "gender": "Male",
- "race": "Cosmic Entity",
- "height": [
- "-",
- "0 cm"
- ],
- "weight": [
- "- lb",
- "0 kg"
- ],
- "eye-color": "Blue",
- "hair-color": "Black"
- },
- "work": {
- "occupation": "Dimensional destroyer",
- "base": "-"
- },
- "connections": {
- "group-affiliation": "Cosmic Beings",
- "relatives": "Eternity (\"Father\")"
- },
- "image": {
- "url": "https://www.superherodb.com/pictures2/portraits/10/100/181.jpg"
- }
- }
- */
-
-/**
- {
- "response": "error",
- "error": "invalid id"
- }
- */

@@ -1,0 +1,105 @@
+{
+    "response": "success",
+    "results-for": "super",
+    "results": [
+        {
+            "id": "195",
+            "name": "Cyborg Superman",
+            "powerstats": {
+                "intelligence": "75",
+                "strength": "93",
+                "speed": "92",
+                "durability": "100",
+                "power": "100",
+                "combat": "80"
+            },
+            "biography": {
+                "full-name": "Henry Henshaw",
+                "alter-egos": "No alter egos found.",
+                "aliases": [
+                    "Grandmaster of the Manhunters",
+                    "Herald of the Anti-Monitor",
+                    "Alpha-Prime of the Alpha Lanterns"
+                ],
+                "place-of-birth": "-",
+                "first-appearance": "Adventures of Superman #466 (May, 1990)",
+                "publisher": "DC Comics",
+                "alignment": "bad"
+            },
+            "appearance": {
+                "gender": "Male",
+                "race": "Cyborg",
+                "height": [
+                    "-",
+                    "0 cm"
+                ],
+                "weight": [
+                    "- lb",
+                    "0 kg"
+                ],
+                "eye-color": "Blue",
+                "hair-color": "Black"
+            },
+            "work": {
+                "occupation": "-",
+                "base": "Warworld, Qward, Antimatter Universe, formerly Biot, Sector 3601"
+            },
+            "connections": {
+                "group-affiliation": "Alpha Lantern Corps, Manhunters, Warworld, formerly Apokolips and Sinestro Corps",
+                "relatives": "Terri Henshaw (wife, deceased)"
+            },
+            "image": {
+                "url": "https://www.superherodb.com/pictures2/portraits/10/100/667.jpg"
+            }
+        },
+        {
+            "id": "641",
+            "name": "Superboy",
+            "powerstats": {
+                "intelligence": "75",
+                "strength": "95",
+                "speed": "83",
+                "durability": "90",
+                "power": "95",
+                "combat": "60"
+            },
+            "biography": {
+                "full-name": "Kon-El / Conner Kent",
+                "alter-egos": "No alter egos found.",
+                "aliases": [
+                    "Experiment 13; Superman; Project: Superman; Carl Krummett; Project: Lionel Luthor; The Metropolis Kid",
+                    "Superman"
+                ],
+                "place-of-birth": "Project Cadmus cloning facility",
+                "first-appearance": "Adventures of Superman #500 (June, 1993)",
+                "publisher": "DC Comics",
+                "alignment": "good"
+            },
+            "appearance": {
+                "gender": "Male",
+                "race": "null",
+                "height": [
+                    "5'7",
+                    "170 cm"
+                ],
+                "weight": [
+                    "150 lb",
+                    "68 kg"
+                ],
+                "eye-color": "Blue",
+                "hair-color": "Black"
+            },
+            "work": {
+                "occupation": "-",
+                "base": "San Francisco; Smallville; Formerly Metropolis; Formerly Honolulu"
+            },
+            "connections": {
+                "group-affiliation": "Teen Titans, Legion of Super-Heroes, Team Superman; Formerly Young Justice, Project Cadmus, Ravers",
+                "relatives": "Superman (Kryptonian genetic template), Lex Luthor (Human genetic template), Match (clone)"
+            },
+            "image": {
+                "url": "https://www.superherodb.com/pictures2/portraits/10/100/789.jpg"
+            }
+        }
+    ]
+}
