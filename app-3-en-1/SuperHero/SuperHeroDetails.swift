@@ -90,7 +90,7 @@ struct SuperHeroDetails: View {
         }
         //... Atributos de la VStack principal
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.appBackground)
+        .background(Color.appBackGround)
         .onAppear{ // cuando aparezca este primer elemento 'VStack' en la pantalla, se va a realizar lo que este dentro como primera función
             Task {
                 do {

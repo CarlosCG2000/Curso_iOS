@@ -47,7 +47,7 @@ struct IMCView: View {
         }
         //... Atributos de la VStack principal
         .frame(maxWidth: .infinity, maxHeight: .infinity) // tamaño de VStack
-            .background(.appBackground) // color del fondo personalizado
+            .background(.appBackGround) // color del fondo personalizado
             .navigationTitle("Índice de masa corporal") // Nombre de la Toolbar (1 forma - personalizado en _Curso:iOSApp)
             /**.toolbar {  // Nombre de la Toolbar (2 forma - personalizado en aquí)
                  ToolbarItem(placement: .principal) { // Personaliza el título

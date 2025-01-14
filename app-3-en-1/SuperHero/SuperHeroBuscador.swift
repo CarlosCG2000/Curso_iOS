@@ -103,7 +103,7 @@ struct SuperHeroBuscador: View {
         }
         //... Atributos de la VStack principal
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.appBackground)
+        .background(Color.appBackGround)
         .navigationTitle("Listado de Superheroes")
         .foregroundStyle(Color.white)
     }

@@ -13,13 +13,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B75117302D2451C4008187BC /* 2_Curso_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2_Curso_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75117302D2451C4008187BC /* app-3-en-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-3-en-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B75117322D2451C4008187BC /* 2_Curso_iOS */ = {
+		B75117322D2451C4008187BC /* app-3-en-1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = 2_Curso_iOS;
+			path = "app-3-en-1";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -41,7 +41,7 @@
 		B75117272D2451C4008187BC = {
 			isa = PBXGroup;
 			children = (
-				B75117322D2451C4008187BC /* 2_Curso_iOS */,
+				B75117322D2451C4008187BC /* app-3-en-1 */,
 				B75117312D2451C4008187BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,7 +49,7 @@
 		B75117312D2451C4008187BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B75117302D2451C4008187BC /* 2_Curso_iOS.app */,
+				B75117302D2451C4008187BC /* app-3-en-1.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B751172F2D2451C4008187BC /* 2_Curso_iOS */ = {
+		B751172F2D2451C4008187BC /* app-3-en-1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B751173E2D2451C5008187BC /* Build configuration list for PBXNativeTarget "2_Curso_iOS" */;
+			buildConfigurationList = B751173E2D2451C5008187BC /* Build configuration list for PBXNativeTarget "app-3-en-1" */;
 			buildPhases = (
 				B751172C2D2451C4008187BC /* Sources */,
 				B751172D2D2451C4008187BC /* Frameworks */,
@@ -70,16 +70,16 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B75117322D2451C4008187BC /* 2_Curso_iOS */,
+				B75117322D2451C4008187BC /* app-3-en-1 */,
 			);
-			name = 2_Curso_iOS;
+			name = "app-3-en-1";
 			packageProductDependencies = (
 				B707EA842D26F90F007EA9FD /* SDWebImage */,
 				B707EA862D26F90F007EA9FD /* SDWebImageMapKit */,
 				B707EA892D26FF19007EA9FD /* SDWebImageSwiftUI */,
 			);
 			productName = 2_Curso_iOS;
-			productReference = B75117302D2451C4008187BC /* 2_Curso_iOS.app */;
+			productReference = B75117302D2451C4008187BC /* app-3-en-1.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B751172B2D2451C4008187BC /* Build configuration list for PBXProject "2_Curso_iOS" */;
+			buildConfigurationList = B751172B2D2451C4008187BC /* Build configuration list for PBXProject "App-3-en-1" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B751172F2D2451C4008187BC /* 2_Curso_iOS */,
+				B751172F2D2451C4008187BC /* app-3-en-1 */,
 			);
 		};
 /* End PBXProject section */
@@ -267,7 +267,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"2_Curso_iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"app-3-en-1/Preview Content\"";
 				DEVELOPMENT_TEAM = WAY42LFGL8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -296,7 +296,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"2_Curso_iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"app-3-en-1/Preview Content\"";
 				DEVELOPMENT_TEAM = WAY42LFGL8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -321,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B751172B2D2451C4008187BC /* Build configuration list for PBXProject "2_Curso_iOS" */ = {
+		B751172B2D2451C4008187BC /* Build configuration list for PBXProject "App-3-en-1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B751173C2D2451C5008187BC /* Debug */,
@@ -330,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B751173E2D2451C5008187BC /* Build configuration list for PBXNativeTarget "2_Curso_iOS" */ = {
+		B751173E2D2451C5008187BC /* Build configuration list for PBXNativeTarget "app-3-en-1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B751173F2D2451C5008187BC /* Debug */,

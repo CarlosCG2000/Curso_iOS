@@ -40,7 +40,7 @@ struct IMCResult: View {
         }
         //... Atributos de la VStack principal
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.appBackground)
+        .background(Color.appBackGround)
     }
 }
 

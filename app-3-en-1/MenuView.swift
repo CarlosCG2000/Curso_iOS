@@ -31,7 +31,7 @@ struct MenuView: View {
             }
             //... Atributos de la List (lista)
             .frame(width: 300, height: 135) // tamaño lista
-            .border(.appBackground,width: 3) // bordes color y grosor
+            .border(.appBackGround,width: 3) // bordes color y grosor
             .cornerRadius(5) // bordes definición
             .listStyle(.plain) // opcional: estilo de lista
             
