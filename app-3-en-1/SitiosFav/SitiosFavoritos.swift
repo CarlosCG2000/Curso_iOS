@@ -12,9 +12,9 @@ import MapKit // para los mapas
 struct SitiosFavoritos: View {
     // _______________  VARIABLES _______________
     // @State: son propiedades reactivas que permiten que las vistas de SwiftUI se actualicen automáticamente cuando cambian sus valores.
-    // MapCameraPosition.region: define la posición inicial de la cámara del mapa y especifica una región para centrar el mapa
+    // 'MapCameraPosition.region': define la posición inicial de la cámara del mapa y especifica una región para centrar el mapa
     @State var position = MapCameraPosition.region(
-        // MKCoordinateRegion: define una región basada en un centro (coordenadas) y un "span" que controla el nivel de zoom.
+        // 'MKCoordinateRegion': define una región basada en un centro (coordenadas) y un "span" que controla el nivel de zoom.
         MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:40.41 , longitude:-3.70),
                            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
     )
@@ -90,7 +90,7 @@ struct SitiosFavoritos: View {
             }
             // ____________________________________________________________
             
-            // ___________________ Dialogo ocn formulario para guardar un nuevo lugar _______________________
+            // ___________________ Dialogo con formulario para guardar un nuevo lugar _______________________
             // Cuando se muestre el dialogo llame al CustomDialog (cuando se pulsa en el mapa y se guardan sus coordenadas)
             if showPopUp != nil {
                 
