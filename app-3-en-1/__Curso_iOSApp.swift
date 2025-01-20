@@ -23,7 +23,7 @@ struct __Curso_iOSApp: App { // APP
             .font: UIFont.boldSystemFont(ofSize: 20) // Texto en negrita, tamaño 20
         ]
     
-        // * Configuración del texto "Back" del boton para ir hacia atrás
+        // * Configuración del texto "Back" del botón para ir hacia atrás
          appearance.buttonAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.white, // Defecto: UIColor.blue,
          ]

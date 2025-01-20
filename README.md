@@ -21,66 +21,65 @@ Creación de `folio en blanco` sin crear aun un proyecto solo un `Playground` en
 * 9. Clases y Structs
 
 ## SwiftUI
-Para organizar el código pillamos todo el código (cmd + a) y pulsamos (ctrl + i)
-Para crear un fichero (command + n)
-Para duplicar la línea (comando + d)
+Para organizar el código pillamos todo el código (`cmd + a`) y pulsamos (`ctrl + i`)
+Para crear un fichero (`command + n`)
+Para duplicar la línea (`comando + d`)
+Para las ayudas de Apple (`option`)
 
 * Componentes principales (`Components/...`):
-- Componente Text
-- Componente Image
-- Componente Slider
-- Componente Label
-- Componente Button
-- @State (son propiedades reactivas que permiten que las vistas de SwiftUI se actualicen automáticamente cuando cambian sus valores.)
-- Componente TextField
-- Componente Toggle
+- Componente `Text`
+- Componente `Image`
+- Componente `Slider`
+- Componente `Label`
+- Componente `Button`
+- `@State` (son propiedades reactivas que permiten que las vistas de `SwiftUI` se actualicen automáticamente cuando cambian sus valores.)
+- Componente `TextField`
+- Componente `Toggle`
 
-Puntos interesantes de la APP 3 en 1:
-1. Menú de navegación (paso de parámetros).
-2. Botones (tipo toogle, contador, navegación).
-3. Slider.
-4. TextField (con validación del input y mostrando los errores).
-5. Listado vertical y horizontal.
-6. Llamada a API (incluido imágenes con librería).
-7. Gráfica de quesitos.
+* Puntos interesantes de la `APP 3 en 1`:
+1. `Menú de navegación` (paso de parámetros).
+2. `Botones` (tipo toogle, contador, navegación).
+3. `Slider`.
+4. `TextField` (con validación del input y mostrando los errores).
+5. `Listado` vertical y horizontal.
+6. Llamada a `API` (incluido imágenes con librería).
+7. `Gráfica` de quesitos.
 
-8. Mapas de Apple (localización).
-9. Markers (marcadores de localización).
-10. Diálogos personalizados (alertas de confirmación o negación).
-11. Toggle.
-12. Sheet (son un tipo de vista modal que se superpone temporalmente a la vista actual).
-13. Persistencia de datos en UserDefaults.
-
-[ HStack, VStack y ZStack ]
-[ Navegación básica ]
+8. `Mapas` de Apple (localización).
+9. `Markers` (marcadores de localización).
+10. `Diálogos personalizados` (alertas de confirmación o negación).
+11. `Toggle`.
+12. `Sheet` (son un tipo de vista modal que se superpone temporalmente a la vista actual).
+13. `Persistencia` de datos en `UserDefaults`.
 
 ### 0. Ficheros generales ✅
 * `Assets`: configuración de colores (AppBackground, ComponentBackground, SelectComponentBackground) e imágenes (youtube) como variables para utilizarlos en el proyecto de forma global.
 
-* `_Curso_iOSApp`: es el punto de entrada de la App.
+* `_Curso_iOSApp`: es el punto de entrada de la App, donde configuro algunas de sus caracteristicas.
 
-* `MainView`: es la primera vista (la principal), solo llama a la primera vista funcional que es el menu (MenuView).
+* `MainView`: es la `primera vista` (la principal), solo llama a la primera vista funcional que es el menu (MenuView).
 
-* `MenuView`: es la primera vista funcional, donde se encuentra el menú para navegar a las aplicaciones (IMC, SuperHeroe, Mis Sitios).
+* `MenuView`: es la primera `vista funcional`, donde se encuentra el `menú` para navegar a las aplicaciones (`IMC`, `SuperHeroe`, `Mis Sitios`).
 
 ### 1. IMC App ✅
-* `IMCView`:  vista principal de esta primera app para configurar los datos del usuario para poder calcular el IMC
-1. IMCView: vista principal
-2. InformationText: texto personalizado
-3. ToogleButton: sección botón personalizado (vista secundaria)
-4. TitleText: texto personalizado 2
-5. CalculadorAltura: sección con Slider personalizado (vista secundaria)
-6. BotonContador: botón contador
-7. ContadorParametro: sección de un contador con dos botones (vista secundaria)
-8. BotonFinal: sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
+* `IMCView`: vista principal de esta primera app para `configurar los datos del usuario` para poder calcular el IMC
+    1. `IMCView`: vista principal
+    2. `InformationText`: texto personalizado
+    3. `ToogleButton`: sección botón personalizado (vista secundaria)
+    4. `TitleText`: texto personalizado 2
+    5. `CalculadorAltura`: sección con Slider personalizado (vista secundaria)
+    6. `BotonContador`: botón contador
+    7. `ContadorParametro`: sección de un contador con dos botones (vista secundaria)
+    8. `BotonFinal`: sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
 
 * `IMCResult`: vista secundaria que muestra el resultado del calculo IMC
-1. `IMCResult`: vista principal
-2. `calcularIMC`: función calcular el IMC (a partir de peso y altura)
-3. `formatoResultado`: función dar formato a una tupla con diversos datos de diferentes tipos según el resultado
-4. `InformationView`: Sección con todos los datos: estado (con color variante), resultado y descripción
+    1. `IMCResult`: vista principal
+    2. `calcularIMC`: función calcular el IMC (a partir de peso y altura)
+    3. `formatoResultado`: función dar formato a una tupla con diversos datos de diferentes tipos según el resultado
+    4. `InformationView`: Sección con todos los datos: estado (con color variante), resultado y descripción
 
-[ Listas ]
+[ HStack, VStack y ZStack ]
+[ Navegación básica ]
 
 ### 2. SuperHeroe App ✅
 * `ApiNetwork`: es una clase (no vista) donde se declara los modelos que se utilizan de la API y se hacen las llamadas a las API
@@ -101,7 +100,7 @@ Puntos interesantes de la APP 3 en 1:
 * `SuperHeroDetails`: vista secundaria, que muestra en detalle a un solo superheroe con mas información que en el listado
 1. `SuperHeroStats`: sección de las estadisticas del superheroe en una gráfica (vista secundaria)
 
-[ Mapas ]
+[ Listas ]
 
 ### 3_Mis Sitios App ✅
 * `SitiosFavoritos`: vista principal
@@ -123,7 +122,7 @@ Se llama tanto a los elementos del dialogo (Content), asi es o no pulsable en to
 1. `guardarPlaces()`: almacenar en la db los sitios (Place)
 2. `cargarPlaces()`: obtener del db los sitios ([Place])
 
-Con User Defaults (muy básica DB) (para borrar la DB seria borrando la App dentro del Iphone (emulador)) 
+Con User Defaults (muy básica DB) (para borrar la DB seria borrando la App dentro del Iphone (emulador))
 
-
+[ Mapas ]
 

@@ -12,11 +12,11 @@ struct MenuView: View {
     
     var body: some View {
         
-        // NavigationStack es el contenedor que organiza las vistas en una pila de navegación.
+        // NavigationStack: es el contenedor que organiza las vistas en una pila de navegación.
         NavigationStack {
-            // List contiene los elementos (NavigationLink) que actúan como opciones del menú.
+            // List: contiene los elementos (NavigationLink) que actúan como opciones del menú.
             List {
-                // NavigationLink (3) contiene los elementos (NavigationLink) que actúan como opciones del menú.
+                // NavigationLink (3): contiene los elementos (NavigationLink) que actúan como opciones del menú.
                 NavigationLink(destination: IMCView()) { // 1_Navega a IMCView
                     Text("Cálculo IMC (APP)")
                 } // .frame(maxWidth: .infinity, alignment: .center)

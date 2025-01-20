@@ -70,6 +70,7 @@ func showMyCustomName(nombre:String = "Pepito", edad:Int, _ pais:String) -> Int{
 }
 
 showMyCustomName(nombre: "Carlos", edad: 24, "El Cabaco")
+
 let letEdad = showMyCustomName(edad: 24, "El Cabaco") // por de fectoy sin necesidad de poner el nombre.
 print("Retorno la edad: \(letEdad)")
 
@@ -175,7 +176,6 @@ repeat{
 } while count > 2
 
 // EJERCICIO #4 Función que reciba un número y crea su tabla de multiplicar del 1 al 10
-
 func tablaMult(_ numero: Int) -> Void {
     print("========= Tabla de multiplicar del \(numero) =========")
     for i in 1...10 {
@@ -206,8 +206,7 @@ var numVoc = 0
 for palabra in frase.lowercased() {
     // for letra in palabra {
     switch palabra {
-    case "a", "e", "i", "o", "u":
-        numVoc += 1
+    case "a", "e", "i", "o", "u": numVoc += 1
     default : break
     }
     // }

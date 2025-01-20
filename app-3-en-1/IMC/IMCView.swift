@@ -14,9 +14,7 @@ struct IMCView: View {
     // VARIABLES
     //(@State --> para que se reflejen los cambios de las vistas secundarias (@Binding), añadir si se modifica en esta vista principal el '$')
     @State var btValorGenero:Int = 0 // esto se envia al ToogleButton (con el @State como la caña de pescar)
-    
     @State var sliValorAltura:Double = 170 // esto se envia a CalculadorAltura
-    
     @State var contValorEdad:Int = 18 // esto se envia a ContadorParametro
     @State var contValorPeso:Int = 60 // esto se envia a ContadorParametro
     
@@ -42,7 +40,7 @@ struct IMCView: View {
             }
             
             // Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
-            BotonFinal(peso: Double(contValorPeso), altura: sliValorAltura, genero: btValorGenero , edad: contValorEdad) // Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
+            BotonFinal(peso: Double(contValorPeso), altura: sliValorAltura, genero: btValorGenero, edad: contValorEdad) // Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
             
         }
         //... Atributos de la VStack principal
@@ -60,6 +58,7 @@ struct IMCView: View {
     }
 }
 
+// STRUCT SECUNDARIOS QUE MUESTRAN VISTAS PARA LA APP
 // 1_Texto personalizado
 struct InformationText:View {
     
@@ -215,7 +214,7 @@ struct ContadorParametro:View{
     }
 }
 
-// 7_Sección con el boton para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
+// 7_Sección con el botón para finalizar y navegar a la siguiente pantalla pasando parámetros (vista secundaria)
 struct BotonFinal: View {
     
     // Variables
