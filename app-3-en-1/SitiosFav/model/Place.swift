@@ -18,17 +18,17 @@ struct Place:Identifiable, Codable { // Codable, antes lo usabamos para la API a
     var coordinates:CLLocationCoordinate2D
     var fav:Bool
     
-    // CodingKeys: Define las claves que se usarán al codificar o decodificar el objeto.
-    enum CodingKeys:CodingKey {
-        case id, name, fav, latitude, longitude //  le ha eliminado 'coordinates' y añadido 'latitude, longitude' para decodificar.
-    }
-    
     // 1_Constructor normal
     init(id:UUID = UUID(), name: String, coordinates: CLLocationCoordinate2D, fav: Bool) {
         self.id = id
         self.name = name
         self.coordinates = coordinates
         self.fav = fav
+    }
+    
+    // CodingKeys: Define las claves que se usarán al codificar o decodificar el objeto.
+    enum CodingKeys:CodingKey {
+        case id, name, fav, latitude, longitude // le ha eliminado 'coordinates' y añadido 'latitude, longitude' para decodificar.
     }
     
     // 2_Contructor especial: para poder decodear (obtiene un contenedor de claves para extraer valores del JSON)

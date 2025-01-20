@@ -27,7 +27,5 @@ extension SitiosFavoritos { // estamos conectados a todo lo de 'SitiosFavoritos'
             places = decodePlaces ?? []
         }
     }
-    
-    
-    
+
 }
