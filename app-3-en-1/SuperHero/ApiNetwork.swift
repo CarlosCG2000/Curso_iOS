@@ -11,8 +11,8 @@ class ApiNetwork {
     
     let apiKey = "ab9e879023c702cc77af432687850fc2"
     
-    // =========================== ESTA PARTE SERIA EN EL FICHERO DEL MODELO ===========================
-    // 1_La estructura Wrapper que se recibe en el json de la API (tiene que ser Codable), ¡importante poner los mismos nombres que en JSON, (los que se quieran usar)!
+    // =========================== ESTA PARTE SERIA EN EL FICHERO DEL MODELO (DATOS CON MISMA ESTRUCTURA QUE LA API) ===========================
+    // 1_La estructura Wrapper (envoltura) que se recibe en el Json de la API (tiene que ser Codable), ¡importante poner los mismos nombres que en JSON, (los que se quieran usar)!
     struct Wrapper: Codable { // parsear la información del JSON: Codable,
         let response:String
         let results:[SuperHero] // creo un clase para el SuperHero, en un array de json
@@ -23,19 +23,19 @@ class ApiNetwork {
         }
     }
     
-    // 1.1_La estructura SuperHero, los datos que recogemos para formar un superheroe en json (recordar poner los mismos nombres que en JSON)
+    // 1.1_MODELO: La estructura SuperHero, los datos que recogemos para formar un superheroe en Json (recordar poner los mismos nombres que en JSON)
     struct SuperHero: Codable, Identifiable { // parsear la información del JSON: Codable, Identifiable porque lo voy a tener wue recorrer en un ForEach
         let id:String
         let name:String
         let image:ImageSuperHero // es otro json dentro del json
     }
     
-    // 1.2_La estructura ImageSuperHero de la imagen del json
+    // 1.2_La estructura 'ImageSuperHero' de la imagen del json
     struct ImageSuperHero:Codable {
         let url:String
     }
     
-    // 2_La estructura de SuperHeroComplete, es otra llamada a la API que devuelve otro json (recordar poner los mismos nombres que en JSON)
+    // 2_MODELO: La estructura de 'SuperHeroComplete', es otra llamada a la API que devuelve otro json (recordar poner los mismos nombres que en JSON)
     struct SuperHeroComplete:Codable {
         let id:String
         let name:String
@@ -70,12 +70,12 @@ class ApiNetwork {
         }
     }
     
-    // =========================== ESTA PARTE SERIA EN EL FICHERO DEL REPOSITORIO (CON LA LÓGICA) ===========================
+    // ========== ESTA PARTE SERIA EN EL FICHERO DEL REPOSITORIO (CON LA LÓGICA DE LA LLAMADA AL MÓDELO A TRAVÉS DE UNA API) ==========
     // Listado de superheroes
     // https://www.superheroapi.com/api.php/ab9e879023c702cc77af432687850fc2/search/super
 
     // 1_Función para obtener todos los heroes a través de un string
-    func getHeroesByQuery(query: String) async throws -> Wrapper { // de forma 'async' al ser una llamada externa a un API, 'throws' significa que pueden dar un error no tinene porque solo devolver el Wrapper
+    func getHeroesByQuery(query: String) async throws -> Wrapper { // de forma 'async' al ser una llamada externa a un API, 'throws' significa que pueden dar un error no tiene porque solo devolver el Wrapper
 
         // guard: en Swift es una forma de controlar errores o condiciones que deben cumplirse antes de que una función o un bloque de código pueda continuar su ejecución. Es como una "puerta de seguridad": si la condición no se cumple, se ejecuta un bloque alternativo, y la función o el bloque actual termina temprano.
         guard let url = URL(string: "https://www.superheroapi.com/api.php/\(apiKey)/search/\(query)") else {

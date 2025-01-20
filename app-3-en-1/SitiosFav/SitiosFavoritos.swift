@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MapKit
+import MapKit // para los mapas
 
 // VISTA PRINCIPAL: SitiosFavoritos
 struct SitiosFavoritos: View {

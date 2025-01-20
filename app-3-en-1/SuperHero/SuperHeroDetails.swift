@@ -203,7 +203,6 @@ struct SuperHeroStats:View {
                             .font(.footnote)
                             .padding(.trailing, 10)
                     }
-                    
                 }
                 
             }.frame(maxWidth: 380)

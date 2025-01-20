@@ -82,7 +82,7 @@ Para las ayudas de Apple (`option`)
 [ Navegación básica ]
 
 ### 2. SuperHeroe App ✅
-* `ApiNetwork`: es una clase (no vista) donde se declara los modelos que se utilizan de la API y se hacen las llamadas a las API
+* `ApiNetwork`: es una `clase` (no vista) donde se declara los modelos que se utilizan de la `API` y se hacen las llamadas a las `API`
 [ API REST: `https://superheroapi.com/`  (KEY: XXXXXXXXX) ]
 1. `Wrapper`: la estructura Wrapper que se recibe en el json de la API (tiene que ser Codable), ¡importante poner los mismos nombres que en JSON, (los que se quieran usar)!
 2. `SuperHero`: la estructura SuperHero, los datos que recogemos para formar un superheroe en json (recordar poner los mismos nombres que en JSON)
@@ -104,13 +104,13 @@ Para las ayudas de Apple (`option`)
 
 ### 3_Mis Sitios App ✅
 * `SitiosFavoritos`: vista principal
-Se muestra el mapa, al pulsar sobre el mapa se abre un dialogo para poder guardar el sitio (en fav o no) a través de un formulario. Tambien se encuentra en el mapa un botón superpuesto para poder a través de un Sheet ver en un listado horizontal tus lugares guardados y pulsando sobre uno de ellos redirigirse a el lugar en el mapa.
+Se muestra el `mapa`, al pulsar sobre el mapa se abre un `dialogo` para poder guardar el sitio (en fav o no) a través de un `formulario`. Tambien se encuentra en el mapa un `botón superpuesto` para poder a través de un `Sheet` ver en un `listado horizontal` tus lugares guardados y pulsando sobre uno de ellos redirigirse a el lugar en el mapa.
 1. `savePlace`: función guardar (dentro de la estructura porque es para ella)
 2. `clearForm`: función para limpiar el formulario y cerrar el Pop Up, una vez guardado
-3. `animateCamera`: función que a través de unas coordenadas te redirige a la posición en el mapa
+3. `animateCamera`: función que a través de unas coordenadas te redirige a la posición en el mapa.
 
-* `CustomDialog`: vista secundaria en vista principal, construcción del dialogo para la vista principal.
-Se llama tanto a los elementos del dialogo (Content), asi es o no pulsable en toda la pagina, como a la función para cerrar el dialogo.
+* `CustomDialog`: vista secundaria en vista principal, construcción del `dialogo` para la vista principal.
+Se llama tanto a los elementos del `dialogo (Content)`, asi es o no pulsable en toda la página, como a la función para cerrar el dialogo.
 
 * `Place`:
 1. `enum CodingKeys`:  Define las claves que se usarán al codificar o decodificar el objeto.

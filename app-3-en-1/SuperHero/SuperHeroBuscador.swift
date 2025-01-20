@@ -12,9 +12,9 @@ import SDWebImageSwiftUI
 struct SuperHeroBuscador: View {
     
     // VARIABLES
-    @State var superheroName: String = "" // string del texto que se pone en el Textfield
+    @State var superheroName: String = "" // string del texto que se pone en el 'Textfield'
     @State var wrapper:ApiNetwork.Wrapper? = nil // clase personalizada, al obtener el json de la apli de superheroes
-    @State var loading = false // para cargar la vista mientras filtra la búsqueda de superheroes en el Textfield
+    @State var loading = false // para cargar la vista mientras filtra la búsqueda de superheroes en el 'Textfield'
     
     var body: some View {
         
@@ -37,12 +37,13 @@ struct SuperHeroBuscador: View {
                 
                 loading = true // se carga la pantalla al principio
                 
-                Task{
+                Task{ // La tarea permite ejecutar código de forma asincrónica (en segundo plano) sin bloquear el hilo principal, parando solo con el uso de await. Forma parte del modelo de `concurrencia` introducido en `Swift 5.5` y que se usa para ejecutar código de forma `asincrónica` y `concurrente`.
                     do{
-                        // La información en formato json recogida de la API: https://superheroapi.com/, de forma asincrona
+                        // Realiza una llamada asincrónica a la API: https://superheroapi.com/
+                        // El uso de 'await' pausa la ejecución dentro de esta tarea hasta que la llamada se complete.
                         wrapper = try await ApiNetwork().getHeroesByQuery(query: superheroName) // llamada al fichero ApiNetwork
                         
-                    } catch {
+                    } catch { // Captura y maneja cualquier error que pueda ocurrir durante la llamada asincrónica.
                         print("Error: \(error)")
                     }
                     
@@ -109,7 +110,7 @@ struct SuperHeroBuscador: View {
     }
 }
 
-// 1_Sección con la información de un Superheroe (vista secundarioa)
+// 1_Sección con la información de un Superheroe (vista secundaria)
 struct SuperHeroItem:View {
     
     let superhero: ApiNetwork.SuperHero // el superheroe
