@@ -4,7 +4,7 @@
 
 ## Xcode
 `IDE oficial` para `Swift`.
-Creación de folio en blanco sin crear aun un proyecto solo un `Playground` en blanco (un fichero para hacer pruebas y ver resultados).
+Creación de `folio en blanco` sin crear aun un proyecto solo un `Playground` en blanco (un fichero para hacer pruebas y ver resultados).
 
 ## Swift (`Components/SwiftEjemplo`)
 * 1. Variables
